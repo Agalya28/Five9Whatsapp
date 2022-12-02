@@ -14,10 +14,10 @@ scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/au
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
 # Assign credentials ann path of style sheet
-creds = ServiceAccountCredentials.from_json_keyfile_name("twiliooutboundsurvey-782aa8d520f8.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("path to json file.json", scope)
 client = gspread.authorize(creds)
 
-sheet = client.open("Five9Whatsappintegration").sheet1
+sheet = client.open("Your Google Sheet Name").sheet1
 
 # Function to initaite a conversation in Five9
 def initiate_conversation(whatsapp_number, w_message):
@@ -33,7 +33,7 @@ def initiate_conversation(whatsapp_number, w_message):
     
     flask_session.headers.update(headers)
     # Body of the request
-    datas = {"tenantName":"Tata Consulting Services Trial Domain"}
+    datas = {"tenantName":"Five9 tenant name"}
         
 
     data = json.dumps(datas)
@@ -69,7 +69,7 @@ def initiate_conversation(whatsapp_number, w_message):
 
     # body of the request
     datas = {"campaignName":"Z_chat",
-            "tenantId":"131096",
+            "tenantId":"five9 tenant id",
             "callbackUrl":"https://0fe6-14-143-71-138.ngrok.io/",
             "contact":{"number1":whatsapp_number},
             "attributes":{ "Question":w_message}
@@ -193,8 +193,8 @@ def receivemessage():
 # @app.route('/send',methods=["POST",'GET'])
 def send_to_whatsapp(whatsapp_number, a_message):
     whatsapp_number = 'whatsapp:+'+whatsapp_number
-    account_sid = 'ACdda77ed9521627c00b41ca7663e30713'
-    auth_token = '0c4ff07a620d690cfd730f3946e8b572'
+    account_sid = 'Twilio Account SID'
+    auth_token = 'Twilio Account Auth Token'
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
